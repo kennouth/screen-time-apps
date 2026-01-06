@@ -376,6 +376,213 @@
             font-weight: 600;
         }
 
+        /* Social Buzz Section */
+        .social-buzz {
+            padding: 60px 0;
+            background: rgba(108, 99, 255, 0.03);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .pulse {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        #last-updated {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .buzz-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .buzz-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #a8a8a8;
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .buzz-tab:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .buzz-tab.active {
+            background: linear-gradient(90deg, #6c63ff, #3b82f6);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .feed-container {
+            display: none;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .feed-container.active {
+            display: block;
+        }
+
+        .feed-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .feed-item:hover {
+            border-color: rgba(108, 99, 255, 0.5);
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .feed-source {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feed-source-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .reddit-icon {
+            background: #ff4500;
+        }
+
+        .news-icon {
+            background: #3b82f6;
+        }
+
+        .feed-source-name {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .feed-time {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .feed-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .feed-title a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .feed-title a:hover {
+            color: #6c63ff;
+        }
+
+        .feed-preview {
+            color: #a8a8a8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .feed-stats {
+            display: flex;
+            gap: 16px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .feed-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .app-mention {
+            display: inline-block;
+            background: rgba(108, 99, 255, 0.2);
+            color: #a5a0ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .buzz-footer {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .refresh-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .buzz-disclaimer {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 12px;
+        }
+
+        .sentiment-positive { color: #22c55e; }
+        .sentiment-negative { color: #ef4444; }
+        .sentiment-neutral { color: #f59e0b; }
+
         /* Footer */
         footer {
             text-align: center;
@@ -413,6 +620,7 @@
             <nav>
                 <a href="#comparison">Comparison</a>
                 <a href="#apps">All Apps</a>
+                <a href="#buzz">Live Buzz</a>
                 <a href="#use-cases">Use Cases</a>
             </nav>
         </div>
@@ -1047,6 +1255,38 @@
         </div>
     </section>
 
+    <section class="social-buzz" id="buzz">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live Social Buzz</h2>
+                <p>Real-time discussions about screen time apps from Reddit & news</p>
+                <div class="live-indicator">
+                    <span class="pulse"></span>
+                    <span id="last-updated">Updating...</span>
+                </div>
+            </div>
+
+            <div class="buzz-tabs">
+                <button class="buzz-tab active" data-tab="reddit">Reddit Discussions</button>
+                <button class="buzz-tab" data-tab="news">Latest News</button>
+            </div>
+
+            <div class="buzz-content">
+                <div id="reddit-feed" class="feed-container active">
+                    <div class="loading-spinner">Loading Reddit discussions...</div>
+                </div>
+                <div id="news-feed" class="feed-container">
+                    <div class="loading-spinner">Loading news...</div>
+                </div>
+            </div>
+
+            <div class="buzz-footer">
+                <button id="refresh-feed" class="refresh-btn">Refresh Feed</button>
+                <p class="buzz-disclaimer">Content sourced from public Reddit APIs and RSS feeds</p>
+            </div>
+        </div>
+    </section>
+
     <section class="use-cases" id="use-cases">
         <div class="container">
             <div class="section-header">
@@ -1100,5 +1340,278 @@
             <p style="margin-top: 10px;">App Store ratings and prices may vary. Last updated: January 2025</p>
         </div>
     </footer>
+
+    <script>
+        // Screen time app names to search for
+        const appNames = ['opal', 'forest app', 'one sec app', 'screenzen', 'freedom app', 'qustodio', 'bark app', 'ourpact', 'kidslox', 'screen time'];
+
+        // Subreddits to search
+        const subreddits = ['digitalminimalism', 'nosurf', 'productivity', 'parenting', 'iphone'];
+
+        // Time ago helper
+        function timeAgo(timestamp) {
+            const seconds = Math.floor((Date.now() / 1000) - timestamp);
+            if (seconds < 60) return 'just now';
+            if (seconds < 3600) return Math.floor(seconds / 60) + 'm ago';
+            if (seconds < 86400) return Math.floor(seconds / 3600) + 'h ago';
+            if (seconds < 604800) return Math.floor(seconds / 86400) + 'd ago';
+            return Math.floor(seconds / 604800) + 'w ago';
+        }
+
+        // Detect app mentions in text
+        function detectApps(text) {
+            const lowerText = text.toLowerCase();
+            const mentioned = [];
+            const appMap = {
+                'opal': 'Opal',
+                'forest': 'Forest',
+                'one sec': 'One Sec',
+                'screenzen': 'ScreenZen',
+                'freedom': 'Freedom',
+                'qustodio': 'Qustodio',
+                'bark': 'Bark',
+                'ourpact': 'OurPact',
+                'kidslox': 'Kidslox',
+                'screen time': 'Screen Time'
+            };
+            for (const [key, name] of Object.entries(appMap)) {
+                if (lowerText.includes(key)) mentioned.push(name);
+            }
+            return mentioned;
+        }
+
+        // Simple sentiment analysis
+        function analyzeSentiment(text) {
+            const positive = ['love', 'great', 'amazing', 'best', 'helpful', 'works', 'recommend', 'awesome', 'perfect', 'excellent'];
+            const negative = ['hate', 'terrible', 'worst', 'broken', 'useless', 'scam', 'waste', 'annoying', 'frustrating', 'disappointed'];
+            const lowerText = text.toLowerCase();
+            let score = 0;
+            positive.forEach(w => { if (lowerText.includes(w)) score++; });
+            negative.forEach(w => { if (lowerText.includes(w)) score--; });
+            if (score > 0) return 'positive';
+            if (score < 0) return 'negative';
+            return 'neutral';
+        }
+
+        // Fetch Reddit posts
+        async function fetchReddit() {
+            const container = document.getElementById('reddit-feed');
+            container.innerHTML = '<div class="loading-spinner">Loading Reddit discussions...</div>';
+
+            try {
+                const allPosts = [];
+
+                // Fetch from multiple subreddits
+                for (const sub of subreddits) {
+                    try {
+                        const response = await fetch(`https://www.reddit.com/r/${sub}/search.json?q=screen+time+app+OR+opal+OR+forest+app+OR+screenzen&sort=new&limit=10&restrict_sr=on`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.data && data.data.children) {
+                                allPosts.push(...data.data.children.map(p => ({...p.data, subreddit: sub})));
+                            }
+                        }
+                    } catch (e) {
+                        console.log(`Failed to fetch from r/${sub}`);
+                    }
+                }
+
+                // Also fetch general screen time discussions
+                try {
+                    const response = await fetch('https://www.reddit.com/search.json?q=screen+time+app+iphone&sort=new&limit=20');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.data && data.data.children) {
+                            allPosts.push(...data.data.children.map(p => p.data));
+                        }
+                    }
+                } catch (e) {
+                    console.log('Failed to fetch general search');
+                }
+
+                // Sort by time and remove duplicates
+                const seen = new Set();
+                const uniquePosts = allPosts.filter(p => {
+                    if (seen.has(p.id)) return false;
+                    seen.add(p.id);
+                    return true;
+                }).sort((a, b) => b.created_utc - a.created_utc).slice(0, 15);
+
+                if (uniquePosts.length === 0) {
+                    container.innerHTML = '<div class="loading-spinner">No recent discussions found. Try refreshing.</div>';
+                    return;
+                }
+
+                container.innerHTML = uniquePosts.map(post => {
+                    const apps = detectApps(post.title + ' ' + (post.selftext || ''));
+                    const sentiment = analyzeSentiment(post.title + ' ' + (post.selftext || ''));
+                    const preview = post.selftext ? post.selftext.substring(0, 200) + (post.selftext.length > 200 ? '...' : '') : '';
+
+                    return `
+                        <div class="feed-item">
+                            <div class="feed-header">
+                                <div class="feed-source">
+                                    <div class="feed-source-icon reddit-icon">R</div>
+                                    <span class="feed-source-name">r/${post.subreddit}</span>
+                                </div>
+                                <span class="feed-time">${timeAgo(post.created_utc)}</span>
+                            </div>
+                            <div class="feed-title">
+                                <a href="https://reddit.com${post.permalink}" target="_blank" rel="noopener">${post.title}</a>
+                            </div>
+                            ${preview ? `<div class="feed-preview">${preview}</div>` : ''}
+                            <div class="feed-stats">
+                                <span class="feed-stat">⬆️ ${post.score}</span>
+                                <span class="feed-stat">💬 ${post.num_comments}</span>
+                                <span class="feed-stat sentiment-${sentiment}">${sentiment === 'positive' ? '😊' : sentiment === 'negative' ? '😞' : '😐'} ${sentiment}</span>
+                            </div>
+                            ${apps.length > 0 ? `<div style="margin-top: 8px">${apps.map(a => `<span class="app-mention">${a}</span>`).join('')}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error('Reddit fetch error:', error);
+                container.innerHTML = '<div class="loading-spinner">Failed to load Reddit. Please try again.</div>';
+            }
+        }
+
+        // Fetch news via RSS
+        async function fetchNews() {
+            const container = document.getElementById('news-feed');
+            container.innerHTML = '<div class="loading-spinner">Loading news...</div>';
+
+            try {
+                // Use rss2json API (free tier)
+                const feeds = [
+                    'https://www.theverge.com/rss/index.xml',
+                    'https://techcrunch.com/feed/'
+                ];
+
+                const allNews = [];
+
+                for (const feedUrl of feeds) {
+                    try {
+                        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}&count=20`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.items) {
+                                // Filter for relevant articles
+                                const relevant = data.items.filter(item => {
+                                    const text = (item.title + ' ' + item.description).toLowerCase();
+                                    return text.includes('screen time') ||
+                                           text.includes('parental control') ||
+                                           text.includes('digital wellness') ||
+                                           text.includes('phone addiction') ||
+                                           text.includes('app blocker') ||
+                                           appNames.some(app => text.includes(app));
+                                });
+                                allNews.push(...relevant.map(item => ({
+                                    ...item,
+                                    source: data.feed.title
+                                })));
+                            }
+                        }
+                    } catch (e) {
+                        console.log('Failed to fetch feed');
+                    }
+                }
+
+                // Sort by date
+                allNews.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                if (allNews.length === 0) {
+                    container.innerHTML = `
+                        <div class="feed-item">
+                            <div class="feed-header">
+                                <div class="feed-source">
+                                    <div class="feed-source-icon news-icon">N</div>
+                                    <span class="feed-source-name">News Search</span>
+                                </div>
+                            </div>
+                            <div class="feed-title">
+                                <a href="https://news.google.com/search?q=screen+time+apps" target="_blank">Search Google News for Screen Time Apps →</a>
+                            </div>
+                            <div class="feed-preview">Click to see the latest news about screen time and parental control apps from Google News.</div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="feed-header">
+                                <div class="feed-source">
+                                    <div class="feed-source-icon news-icon">N</div>
+                                    <span class="feed-source-name">Tech News</span>
+                                </div>
+                            </div>
+                            <div class="feed-title">
+                                <a href="https://www.theverge.com/search?q=screen+time" target="_blank">The Verge: Screen Time Coverage →</a>
+                            </div>
+                            <div class="feed-preview">Read The Verge's coverage of screen time features and digital wellness apps.</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = allNews.slice(0, 10).map(item => {
+                    const apps = detectApps(item.title + ' ' + item.description);
+                    const date = new Date(item.pubDate);
+                    const timeStr = date.toLocaleDateString();
+
+                    return `
+                        <div class="feed-item">
+                            <div class="feed-header">
+                                <div class="feed-source">
+                                    <div class="feed-source-icon news-icon">N</div>
+                                    <span class="feed-source-name">${item.source || 'News'}</span>
+                                </div>
+                                <span class="feed-time">${timeStr}</span>
+                            </div>
+                            <div class="feed-title">
+                                <a href="${item.link}" target="_blank" rel="noopener">${item.title}</a>
+                            </div>
+                            <div class="feed-preview">${item.description.replace(/<[^>]*>/g, '').substring(0, 200)}...</div>
+                            ${apps.length > 0 ? `<div style="margin-top: 8px">${apps.map(a => `<span class="app-mention">${a}</span>`).join('')}</div>` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error('News fetch error:', error);
+                container.innerHTML = '<div class="loading-spinner">Failed to load news. Please try again.</div>';
+            }
+        }
+
+        // Tab switching
+        document.querySelectorAll('.buzz-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.buzz-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.feed-container').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab + '-feed').classList.add('active');
+            });
+        });
+
+        // Refresh button
+        document.getElementById('refresh-feed').addEventListener('click', () => {
+            fetchReddit();
+            fetchNews();
+            updateTimestamp();
+        });
+
+        // Update timestamp
+        function updateTimestamp() {
+            document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+        }
+
+        // Initial load
+        fetchReddit();
+        fetchNews();
+        updateTimestamp();
+
+        // Auto-refresh every 5 minutes
+        setInterval(() => {
+            fetchReddit();
+            fetchNews();
+            updateTimestamp();
+        }, 300000);
+    </script>
 </body>
 </html>
