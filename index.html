@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Time Apps Comparison | iOS 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        nav a {
+            color: #a8a8a8;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #6c63ff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #a8a8a8;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6c63ff;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #888;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 60px 0;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        th {
+            background: rgba(108, 99, 255, 0.1);
+            font-weight: 600;
+            color: #fff;
+            position: sticky;
+            top: 0;
+        }
+
+        th:first-child, td:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            background: #1a1a2e;
+            z-index: 1;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .app-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .check {
+            color: #22c55e;
+            font-size: 1.2rem;
+        }
+
+        .cross {
+            color: #ef4444;
+            font-size: 1.2rem;
+        }
+
+        .partial {
+            color: #f59e0b;
+            font-size: 1.2rem;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .rating .star {
+            color: #fbbf24;
+        }
+
+        .price-tag {
+            background: rgba(108, 99, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #a5a0ff;
+        }
+
+        .price-tag.free {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        /* App Cards */
+        .apps-section {
+            padding: 60px 0;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .app-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(108, 99, 255, 0.5);
+        }
+
+        .app-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .app-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .app-card-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .app-card-info .developer {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .app-card-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        .rating-count {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .app-card-description {
+            color: #a8a8a8;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .app-card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: rgba(108, 99, 255, 0.15);
+            color: #a5a0ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .app-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .app-price {
+            font-weight: 600;
+        }
+
+        .app-price.free {
+            color: #4ade80;
+        }
+
+        .app-link {
+            background: linear-gradient(90deg, #6c63ff, #3b82f6);
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .app-link:hover {
+            opacity: 0.9;
+        }
+
+        /* Use Case Section */
+        .use-cases {
+            padding: 60px 0;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .use-case-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .use-case-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .use-case-card p {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .recommended {
+            color: #6c63ff;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Screen<span>Time</span>Apps</div>
+            <nav>
+                <a href="#comparison">Comparison</a>
+                <a href="#apps">All Apps</a>
+                <a href="#use-cases">Use Cases</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Find Your Perfect Screen Time App</h1>
+            <p>Compare the best iOS screen time and digital wellness apps. From parental controls to personal productivity, find the right tool to manage your screen time effectively.</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Apps Compared</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Features Tracked</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Updated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Feature Comparison Grid</h2>
+                <p>See how each app stacks up across key features</p>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>App</th>
+                            <th>App Store Rating</th>
+                            <th>Price</th>
+                            <th>App Blocking</th>
+                            <th>Usage Reports</th>
+                            <th>Schedule Limits</th>
+                            <th>Website Filter</th>
+                            <th>Location Tracking</th>
+                            <th>Multi-Device</th>
+                            <th>Focus Mode</th>
+                            <th>Family Sharing</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #5856D6, #AF52DE);">📱</div>
+                                    <strong>Apple Screen Time</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> Built-in</span></td>
+                            <td><span class="price-tag free">Free</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="partial">◐</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Basic needs</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💎</div>
+                                    <strong>Opal</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.6</span></td>
+                            <td><span class="price-tag">$9.99/mo</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td>Personal focus</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">🌲</div>
+                                    <strong>Forest</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.7</span></td>
+                            <td><span class="price-tag">$4.99</span></td>
+                            <td><span class="partial">◐</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td>Gamification</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">1️⃣</div>
+                                    <strong>One Sec</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.5</span></td>
+                            <td><span class="price-tag">$4.99/mo</span></td>
+                            <td><span class="partial">◐</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td>Mindful pauses</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🔒</div>
+                                    <strong>Freedom</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.4</span></td>
+                            <td><span class="price-tag">$8.99/mo</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td>Cross-platform</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">📊</div>
+                                    <strong>ScreenZen</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.6</span></td>
+                            <td><span class="price-tag free">Freemium</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td>Usage barriers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">👨‍👩‍👧</div>
+                                    <strong>Qustodio</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.3</span></td>
+                            <td><span class="price-tag">$54.95/yr</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Parental control</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">🐕</div>
+                                    <strong>Bark</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.5</span></td>
+                            <td><span class="price-tag">$14/mo</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Content monitoring</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">⏰</div>
+                                    <strong>OurPact</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.4</span></td>
+                            <td><span class="price-tag">$6.99/mo</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Family scheduling</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🛡️</div>
+                                    <strong>Net Nanny</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.2</span></td>
+                            <td><span class="price-tag">$54.99/yr</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Web filtering</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);">🔐</div>
+                                    <strong>Kidslox</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.5</span></td>
+                            <td><span class="price-tag">$5.99/mo</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Easy setup</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="app-name">
+                                    <div class="app-icon" style="background: linear-gradient(135deg, #84cc16, #65a30d);">👶</div>
+                                    <strong>FamilyTime</strong>
+                                </div>
+                            </td>
+                            <td><span class="rating"><span class="star">★</span> 4.3</span></td>
+                            <td><span class="price-tag">$27/yr</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="cross">✗</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td>Budget option</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.85rem;">
+                ✓ = Full support &nbsp;&nbsp; ◐ = Partial/Limited &nbsp;&nbsp; ✗ = Not available
+            </p>
+        </div>
+    </section>
+
+    <section class="apps-section" id="apps">
+        <div class="container">
+            <div class="section-header">
+                <h2>Detailed App Reviews</h2>
+                <p>In-depth look at each screen time app</p>
+            </div>
+            <div class="apps-grid">
+                <!-- Apple Screen Time -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #5856D6, #AF52DE);">📱</div>
+                        <div class="app-card-info">
+                            <h3>Apple Screen Time</h3>
+                            <div class="developer">Apple Inc.</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">Built into iOS</span>
+                    </div>
+                    <p class="app-card-description">
+                        Native iOS solution offering basic screen time tracking, app limits, downtime scheduling, and content restrictions. Perfect for users who want simple controls without additional apps.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">App Limits</span>
+                        <span class="feature-tag">Downtime</span>
+                        <span class="feature-tag">Content Filters</span>
+                        <span class="feature-tag">Family Sharing</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price free">Free (Built-in)</span>
+                        <a href="https://support.apple.com/en-us/HT208982" class="app-link">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Opal -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💎</div>
+                        <div class="app-card-info">
+                            <h3>Opal</h3>
+                            <div class="developer">Opal</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.6 (15K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Premium focus app designed to help you take back control of your screen time. Features beautiful design, session-based blocking, and detailed insights into your phone usage patterns.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Focus Sessions</span>
+                        <span class="feature-tag">App Blocking</span>
+                        <span class="feature-tag">Usage Insights</span>
+                        <span class="feature-tag">Deep Focus</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$9.99/month</span>
+                        <a href="https://apps.apple.com/app/opal-screen-time-for-focus/id1497465230" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Forest -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">🌲</div>
+                        <div class="app-card-info">
+                            <h3>Forest</h3>
+                            <div class="developer">Seekrtech Co., Ltd.</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.7 (50K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Gamified approach to reducing phone usage. Plant virtual trees that grow while you stay focused. Leave the app and your tree dies. Partner with Trees for the Future to plant real trees.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Gamification</span>
+                        <span class="feature-tag">Virtual Trees</span>
+                        <span class="feature-tag">Real Tree Planting</span>
+                        <span class="feature-tag">Statistics</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$4.99 one-time</span>
+                        <a href="https://apps.apple.com/app/forest-focus-for-productivity/id866450515" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- One Sec -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">1️⃣</div>
+                        <div class="app-card-info">
+                            <h3>One Sec</h3>
+                            <div class="developer">One Sec</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.5 (8K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Unique approach that adds a breathing exercise before opening distracting apps. The pause helps break automatic habits and makes you mindful of your phone usage.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Breathing Pause</span>
+                        <span class="feature-tag">Habit Breaking</span>
+                        <span class="feature-tag">Mindfulness</span>
+                        <span class="feature-tag">Usage Stats</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$4.99/month</span>
+                        <a href="https://apps.apple.com/app/one-sec-app-blocker/id1532875441" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Freedom -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🔒</div>
+                        <div class="app-card-info">
+                            <h3>Freedom</h3>
+                            <div class="developer">Freedom.to</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">4.4 (5K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Cross-platform distraction blocker that syncs across iPhone, Mac, Windows, and Android. Block websites and apps everywhere with one subscription.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Cross-Platform</span>
+                        <span class="feature-tag">Website Blocking</span>
+                        <span class="feature-tag">Scheduled Sessions</span>
+                        <span class="feature-tag">Locked Mode</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$8.99/month</span>
+                        <a href="https://apps.apple.com/app/freedom-block-distractions/id1269788228" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- ScreenZen -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">📊</div>
+                        <div class="app-card-info">
+                            <h3>ScreenZen</h3>
+                            <div class="developer">ScreenZen</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.6 (10K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Creates friction before opening distracting apps using customizable barriers. Features usage limits, waiting periods, and take-a-break reminders.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Custom Barriers</span>
+                        <span class="feature-tag">Usage Limits</span>
+                        <span class="feature-tag">Break Reminders</span>
+                        <span class="feature-tag">Free Tier</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price free">Freemium</span>
+                        <a href="https://apps.apple.com/app/screenzen-screen-time-control/id1541309692" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Qustodio -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">👨‍👩‍👧</div>
+                        <div class="app-card-info">
+                            <h3>Qustodio</h3>
+                            <div class="developer">Qustodio LLC</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">4.3 (12K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Comprehensive parental control solution with advanced monitoring, web filtering, location tracking, and detailed activity reports. Trusted by millions of parents worldwide.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Parental Controls</span>
+                        <span class="feature-tag">Web Filtering</span>
+                        <span class="feature-tag">Location Tracking</span>
+                        <span class="feature-tag">Activity Reports</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$54.95/year</span>
+                        <a href="https://apps.apple.com/app/qustodio-parental-control-app/id680038998" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Bark -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">🐕</div>
+                        <div class="app-card-info">
+                            <h3>Bark</h3>
+                            <div class="developer">Bark Technologies</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.5 (18K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        AI-powered monitoring focused on detecting concerning content like cyberbullying, depression, and online predators. Monitors 30+ apps and platforms without reading every message.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">AI Monitoring</span>
+                        <span class="feature-tag">Content Alerts</span>
+                        <span class="feature-tag">Social Media</span>
+                        <span class="feature-tag">Text Monitoring</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$14/month</span>
+                        <a href="https://apps.apple.com/app/bark-parental-controls/id1477619581" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- OurPact -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">⏰</div>
+                        <div class="app-card-info">
+                            <h3>OurPact</h3>
+                            <div class="developer">Eturi Corp.</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">4.4 (7K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Family-focused screen time management with instant app blocking, automated schedules, and allowance-based screen time. Features unique family locator and geofencing.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Instant Block</span>
+                        <span class="feature-tag">Schedules</span>
+                        <span class="feature-tag">Allowances</span>
+                        <span class="feature-tag">Geofencing</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$6.99/month</span>
+                        <a href="https://apps.apple.com/app/ourpact-parental-control/id954029412" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Net Nanny -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🛡️</div>
+                        <div class="app-card-info">
+                            <h3>Net Nanny</h3>
+                            <div class="developer">Zift</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">4.2 (6K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Industry veteran known for powerful web filtering technology. Real-time content analysis blocks inappropriate sites even if they're not in a predefined list.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Web Filtering</span>
+                        <span class="feature-tag">Real-time Analysis</span>
+                        <span class="feature-tag">Profanity Masking</span>
+                        <span class="feature-tag">YouTube Monitor</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$54.99/year</span>
+                        <a href="https://apps.apple.com/app/net-nanny-parental-control/id1214376128" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- Kidslox -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);">🔐</div>
+                        <div class="app-card-info">
+                            <h3>Kidslox</h3>
+                            <div class="developer">Kidslox</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-count">4.5 (25K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Easy-to-use parental control with one-tap app blocking and simple daily limits. Quick setup process and intuitive interface make it great for less tech-savvy parents.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">Easy Setup</span>
+                        <span class="feature-tag">One-Tap Block</span>
+                        <span class="feature-tag">Daily Limits</span>
+                        <span class="feature-tag">Multi-Device</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$5.99/month</span>
+                        <a href="https://apps.apple.com/app/kidslox-parental-controls/id914825567" class="app-link">App Store</a>
+                    </div>
+                </div>
+
+                <!-- FamilyTime -->
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-card-icon" style="background: linear-gradient(135deg, #84cc16, #65a30d);">👶</div>
+                        <div class="app-card-info">
+                            <h3>FamilyTime</h3>
+                            <div class="developer">FamilyTime Labs</div>
+                        </div>
+                    </div>
+                    <div class="app-card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-count">4.3 (4K+ ratings)</span>
+                    </div>
+                    <p class="app-card-description">
+                        Affordable family parental control with SOS/Panic button for emergencies. Includes geofencing, app blocking, and BedTime feature to ensure kids disconnect at night.
+                    </p>
+                    <div class="app-card-features">
+                        <span class="feature-tag">SOS Button</span>
+                        <span class="feature-tag">BedTime Mode</span>
+                        <span class="feature-tag">Geofencing</span>
+                        <span class="feature-tag">Affordable</span>
+                    </div>
+                    <div class="app-card-footer">
+                        <span class="app-price">$27/year</span>
+                        <a href="https://apps.apple.com/app/familytime-parental-controls/id982920870" class="app-link">App Store</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases" id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Which App Is Right For You?</h2>
+                <p>Find the best fit based on your needs</p>
+            </div>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">👤</div>
+                    <h3>Personal Productivity</h3>
+                    <p>Want to reduce your own screen time and stay focused on work or study?</p>
+                    <div class="recommended">Recommended: Opal, Forest, or One Sec</div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Parental Controls</h3>
+                    <p>Need to manage and monitor your children's device usage?</p>
+                    <div class="recommended">Recommended: Qustodio, Bark, or Kidslox</div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💰</div>
+                    <h3>Budget-Friendly</h3>
+                    <p>Looking for effective screen time management without the subscription?</p>
+                    <div class="recommended">Recommended: Apple Screen Time, Forest, or ScreenZen</div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💻</div>
+                    <h3>Multi-Platform</h3>
+                    <p>Need controls that work across iPhone, Android, Mac, and Windows?</p>
+                    <div class="recommended">Recommended: Freedom, Qustodio, or Net Nanny</div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎮</div>
+                    <h3>Gamification</h3>
+                    <p>Want a fun, engaging way to build better phone habits?</p>
+                    <div class="recommended">Recommended: Forest or Opal</div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🔒</div>
+                    <h3>Content Safety</h3>
+                    <p>Primary concern is blocking inappropriate content for kids?</p>
+                    <div class="recommended">Recommended: Net Nanny, Bark, or Qustodio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Screen Time Apps Comparison &copy; 2025. All app names and logos are trademarks of their respective owners.</p>
+            <p style="margin-top: 10px;">App Store ratings and prices may vary. Last updated: January 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
