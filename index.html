@@ -637,6 +637,265 @@
             font-size: 0.95rem;
         }
 
+        /* Strategy Generator Section */
+        .strategy-generator {
+            padding: 80px 0;
+            background: linear-gradient(180deg, rgba(78, 48, 189, 0.05) 0%, transparent 100%);
+        }
+
+        .strategy-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .strategy-selector label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .app-select-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .app-select {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239EF9FF' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            transition: all 0.3s ease;
+        }
+
+        .app-select:hover, .app-select:focus {
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 20px var(--glow-purple);
+            outline: none;
+        }
+
+        .app-select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            padding: 12px;
+        }
+
+        .generate-btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-purple-light));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--glow-purple);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .strategy-results {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .strategy-results.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .company-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+        }
+
+        .company-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .company-header .market-position {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .company-header .key-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .company-header .metric {
+            text-align: center;
+        }
+
+        .company-header .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .company-header .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-card:hover {
+            border-color: var(--primary-purple);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .strategy-card .role-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .strategy-card .role-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .strategy-card .role-icon.ceo { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .strategy-card .role-icon.cto { background: linear-gradient(135deg, #00D4FF, #0099CC); }
+        .strategy-card .role-icon.design { background: linear-gradient(135deg, #FF6B9D, #C44569); }
+        .strategy-card .role-icon.marketing { background: linear-gradient(135deg, #7B68EE, #6A5ACD); }
+        .strategy-card .role-icon.talent { background: linear-gradient(135deg, #50C878, #3CB371); }
+        .strategy-card .role-icon.company { background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan)); }
+
+        .strategy-card .role-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .strategy-card .role-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .strategy-card .strategy-content h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-lime);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .strategy-card .strategy-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .strategy-card .strategy-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .strategy-card .strategy-content li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .strategy-card .strategy-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .priority-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .priority-tag.high {
+            background: rgba(255, 107, 107, 0.2);
+            color: #FF6B6B;
+        }
+
+        .priority-tag.medium {
+            background: rgba(255, 196, 108, 0.2);
+            color: #FFC46C;
+        }
+
+        .priority-tag.low {
+            background: rgba(212, 255, 156, 0.2);
+            color: var(--accent-lime);
+        }
+
         /* Social Buzz Section */
         .social-buzz {
             padding: 80px 0;
@@ -2224,6 +2483,62 @@
         </div>
     </section>
 
+    <!-- Strategy Generator Section -->
+    <section class="strategy-generator" id="strategy">
+        <div class="container">
+            <div class="section-header">
+                <h2>Competitive Strategy Generator</h2>
+                <p>Select an app to generate role-specific winning strategies based on competitive analysis</p>
+            </div>
+
+            <div class="strategy-selector">
+                <label for="app-strategy-select">Choose your company:</label>
+                <div class="app-select-wrapper">
+                    <select id="app-strategy-select" class="app-select">
+                        <option value="">-- Select an App --</option>
+                        <optgroup label="Personal Focus Apps">
+                            <option value="opal">Opal</option>
+                            <option value="screenzen">ScreenZen</option>
+                            <option value="forest">Forest</option>
+                            <option value="focuskeeper">Focus Keeper</option>
+                            <option value="bepresent">BePresent</option>
+                            <option value="onesec">One Sec</option>
+                            <option value="focustodo">Focus To-Do</option>
+                            <option value="clearspace">Clearspace</option>
+                            <option value="refocus">Refocus</option>
+                            <option value="roots">Roots</option>
+                            <option value="jomo">Jomo</option>
+                            <option value="freedom">Freedom</option>
+                            <option value="appblock">AppBlock</option>
+                            <option value="flipd">Flipd</option>
+                            <option value="dumbphone">Dumb Phone</option>
+                            <option value="blocksite">BlockSite</option>
+                            <option value="habitify">Habitify</option>
+                            <option value="productive">Productive</option>
+                        </optgroup>
+                        <optgroup label="Parental Control Apps">
+                            <option value="life360">Life360</option>
+                            <option value="googlefamilylink">Google Family Link</option>
+                            <option value="findmykids">Findmykids</option>
+                            <option value="kids360">Kids360</option>
+                            <option value="ourpact">OurPact</option>
+                            <option value="kidslox">Kidslox</option>
+                            <option value="bark">Bark</option>
+                            <option value="circle">Circle</option>
+                            <option value="qustodio">Qustodio</option>
+                            <option value="famisafe">FamiSafe</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button id="generate-strategy-btn" class="generate-btn" disabled>Generate Strategy</button>
+            </div>
+
+            <div id="strategy-results" class="strategy-results">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <section class="social-buzz" id="buzz">
         <div class="container">
             <div class="section-header">
@@ -2733,6 +3048,663 @@
             // Reset sort indicators
             headers.forEach(h => h.classList.remove('asc', 'desc'));
             currentSort = { column: null, direction: 'asc' };
+        });
+
+        // ========================================
+        // Strategy Generator
+        // ========================================
+
+        const appData = {
+            // Personal Focus Apps
+            opal: {
+                name: 'Opal',
+                rating: 4.8,
+                reviews: '63K',
+                price: '$99.99/yr',
+                category: 'personal',
+                strengths: ['Premium brand positioning', 'High user satisfaction', 'Strong app blocking', 'Focus sessions'],
+                weaknesses: ['High price point', 'No family features', 'No location tracking'],
+                competitors: ['ScreenZen', 'One Sec', 'Clearspace'],
+                marketPosition: 'Premium market leader in personal focus',
+                uniqueValue: 'Premium focus experience with deep iOS integration'
+            },
+            screenzen: {
+                name: 'ScreenZen',
+                rating: 4.8,
+                reviews: '29K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Free/donation model', 'Highly customizable', 'Strong community', 'Delay-based approach'],
+                weaknesses: ['Revenue sustainability', 'Limited premium features', 'No cross-platform'],
+                competitors: ['Opal', 'One Sec', 'Refocus'],
+                marketPosition: 'Best free option with premium-level features',
+                uniqueValue: 'Donation-supported with no paywall barriers'
+            },
+            forest: {
+                name: 'Forest',
+                rating: 4.8,
+                reviews: '47K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Gamification', 'Tree planting partnership', 'Social features', 'Brand recognition'],
+                weaknesses: ['Limited blocking capabilities', 'No website filtering', 'Dated UI'],
+                competitors: ['Opal', 'Flipd', 'Focus Keeper'],
+                marketPosition: 'Gamified focus pioneer with environmental mission',
+                uniqueValue: 'Real tree planting tied to focus sessions'
+            },
+            focuskeeper: {
+                name: 'Focus Keeper',
+                rating: 4.8,
+                reviews: '31K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Simple Pomodoro focus', 'Large user base', 'Apple Watch support', 'ADHD-friendly'],
+                weaknesses: ['Limited app blocking', 'Basic feature set', 'No website filter'],
+                competitors: ['Be Focused', 'Focus To-Do', 'Flow'],
+                marketPosition: 'Leading Pomodoro timer with accessibility focus',
+                uniqueValue: 'ADHD-optimized Pomodoro technique'
+            },
+            bepresent: {
+                name: 'BePresent',
+                rating: 4.8,
+                reviews: '28K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Free tier', 'Screen detox focus', 'High ratings', 'Simple UX'],
+                weaknesses: ['Limited advanced features', 'No location blocking', 'Newer entrant'],
+                competitors: ['ScreenZen', 'Opal', 'One Sec'],
+                marketPosition: 'Accessible screen detox for mainstream users',
+                uniqueValue: 'Mindfulness-first approach to screen time'
+            },
+            onesec: {
+                name: 'One Sec',
+                rating: 4.8,
+                reviews: '22K',
+                price: '$19.99/yr',
+                category: 'personal',
+                strengths: ['Unique pause mechanism', 'Behavioral science approach', 'ADHD support', 'iOS shortcuts integration'],
+                weaknesses: ['No hard blocking', 'Relies on user willpower', 'Single approach'],
+                competitors: ['Opal', 'ScreenZen', 'Clearspace'],
+                marketPosition: 'Mindful pause innovator using friction',
+                uniqueValue: 'Deep breath intervention before app opening'
+            },
+            focustodo: {
+                name: 'Focus To-Do',
+                rating: 4.8,
+                reviews: '14K',
+                price: '$11.99',
+                category: 'personal',
+                strengths: ['Task + timer combo', 'Affordable lifetime', 'Cross-platform', 'Gamification'],
+                weaknesses: ['Complex for simple use', 'Chinese origin concerns', 'Crowded feature set'],
+                competitors: ['Focus Keeper', 'Be Focused', 'Session'],
+                marketPosition: 'Productivity suite combining tasks and focus',
+                uniqueValue: 'All-in-one task management with Pomodoro'
+            },
+            clearspace: {
+                name: 'Clearspace',
+                rating: 4.8,
+                reviews: '8K',
+                price: '$44.99/yr',
+                category: 'personal',
+                strengths: ['Exercise-to-unlock innovation', 'Mindful app opening', 'Clean design'],
+                weaknesses: ['Mid-tier pricing', 'Limited feature breadth', 'Niche approach'],
+                competitors: ['Opal', 'One Sec', 'Jomo'],
+                marketPosition: 'Innovative friction-based app blocker',
+                uniqueValue: 'Physical exercise requirement to unlock apps'
+            },
+            refocus: {
+                name: 'Refocus',
+                rating: 4.8,
+                reviews: '7.9K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Free with premium features', 'Strict mode', 'Website blocking', 'Pomodoro integration'],
+                weaknesses: ['Newer app', 'Smaller community', 'Marketing reach'],
+                competitors: ['ScreenZen', 'AppBlock', 'Freedom'],
+                marketPosition: 'Feature-rich free blocker with strict mode',
+                uniqueValue: 'Copy text challenges and strict lockouts'
+            },
+            roots: {
+                name: 'Roots',
+                rating: 4.8,
+                reviews: '1.4K',
+                price: '$29.99/yr',
+                category: 'personal',
+                strengths: ['Monk mode feature', 'Clean design', 'Focused approach'],
+                weaknesses: ['Smaller user base', 'Limited features', 'Brand awareness'],
+                competitors: ['Opal', 'Clearspace', 'Flipd'],
+                marketPosition: 'Minimalist focus app with monk mode',
+                uniqueValue: 'Dedicated monk mode for deep work'
+            },
+            jomo: {
+                name: 'Jomo',
+                rating: 4.7,
+                reviews: '1.7K',
+                price: '$29.99/yr',
+                category: 'personal',
+                strengths: ['AI-powered exercises', 'Mindfulness focus', 'Website blocking', 'Break activities'],
+                weaknesses: ['Smaller user base', 'Higher learning curve', 'Niche positioning'],
+                competitors: ['Clearspace', 'One Sec', 'Opal'],
+                marketPosition: 'AI-driven digital wellness with exercises',
+                uniqueValue: 'AI-generated break exercises and activities'
+            },
+            freedom: {
+                name: 'Freedom',
+                rating: 4.4,
+                reviews: '5K',
+                price: '$39.99/yr',
+                category: 'personal',
+                strengths: ['Cross-platform leader', 'Website blocking', 'Sync across devices', 'Established brand'],
+                weaknesses: ['Lower mobile ratings', 'Desktop-first', 'Dated mobile UX'],
+                competitors: ['Opal', 'AppBlock', 'BlockSite'],
+                marketPosition: 'Cross-platform productivity blocker veteran',
+                uniqueValue: 'Seamless sync between desktop and mobile'
+            },
+            appblock: {
+                name: 'AppBlock',
+                rating: 4.6,
+                reviews: '4.9K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Full feature set', 'Location-based blocking', 'Scheduling', 'Free tier'],
+                weaknesses: ['Complex UI', 'Many permissions required', 'Ad-supported'],
+                competitors: ['ScreenZen', 'Refocus', 'Freedom'],
+                marketPosition: 'Feature-complete free blocker',
+                uniqueValue: 'Location and WiFi-based automatic blocking'
+            },
+            flipd: {
+                name: 'Flipd',
+                rating: 4.5,
+                reviews: '6.9K',
+                price: '$44.99/yr',
+                category: 'personal',
+                strengths: ['Study groups', 'Social accountability', 'Student focus', 'Challenges'],
+                weaknesses: ['Student-centric only', 'Limited professional use', 'Subscription cost'],
+                competitors: ['Forest', 'Focus Keeper', 'StudyBuddy'],
+                marketPosition: 'Social study app for students',
+                uniqueValue: 'Study groups and social accountability'
+            },
+            dumbphone: {
+                name: 'Dumb Phone',
+                rating: 4.6,
+                reviews: '2.2K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Minimalist launcher', 'Unique approach', 'Growing trend', 'Simple UX'],
+                weaknesses: ['Niche appeal', 'Limited functionality', 'iOS restrictions'],
+                competitors: ['minimalist phone', 'Minimis', 'Rewire'],
+                marketPosition: 'Minimalist phone launcher movement',
+                uniqueValue: 'Transform smartphone into dumb phone experience'
+            },
+            blocksite: {
+                name: 'BlockSite',
+                rating: 4.2,
+                reviews: '5.7K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Category blocking', 'Browser extension', 'Website focus', 'Free tier'],
+                weaknesses: ['Lower ratings', 'VPN required', 'Privacy concerns'],
+                competitors: ['Freedom', 'AppBlock', 'Refocus'],
+                marketPosition: 'Website-focused blocker with browser extension',
+                uniqueValue: 'Category-based content blocking'
+            },
+            habitify: {
+                name: 'Habitify',
+                rating: 4.6,
+                reviews: '6.5K',
+                price: '$39.99/yr',
+                category: 'personal',
+                strengths: ['Habit + screen time combo', 'Beautiful design', 'Apple ecosystem', 'NFC support'],
+                weaknesses: ['Habit-first not blocking-first', 'Premium pricing', 'Feature overlap'],
+                competitors: ['Productive', 'Streaks', 'Habit Tracker'],
+                marketPosition: 'Premium habit tracker with screen time',
+                uniqueValue: 'NFC tag habit tracking with screen time integration'
+            },
+            productive: {
+                name: 'Productive',
+                rating: 4.6,
+                reviews: '91K',
+                price: 'Free',
+                category: 'personal',
+                strengths: ['Massive user base', 'Habit tracking', 'Beautiful UI', 'Free tier'],
+                weaknesses: ['No app blocking', 'Habit-only focus', 'Indirect screen time help'],
+                competitors: ['Habitify', 'Streaks', 'Habit Tracker'],
+                marketPosition: 'Leading habit tracker with indirect screen benefits',
+                uniqueValue: 'Habit building that naturally reduces screen time'
+            },
+            // Parental Control Apps
+            life360: {
+                name: 'Life360',
+                rating: 4.8,
+                reviews: '2.5M',
+                price: 'Free',
+                category: 'parental',
+                strengths: ['Massive scale', 'Family locator leader', 'Driver safety', 'Emergency features'],
+                weaknesses: ['Privacy concerns', 'Limited screen time', 'Subscription upsells'],
+                competitors: ['Google Family Link', 'Findmykids', 'Apple Find My'],
+                marketPosition: 'Dominant family safety and location platform',
+                uniqueValue: 'Comprehensive family safety beyond screen time'
+            },
+            googlefamilylink: {
+                name: 'Google Family Link',
+                rating: 4.7,
+                reviews: '262K',
+                price: 'Free',
+                category: 'parental',
+                strengths: ['Google ecosystem', 'Free', 'Cross-platform', 'Trusted brand'],
+                weaknesses: ['Android-focused', 'Limited iOS features', 'Basic blocking'],
+                competitors: ['Apple Screen Time', 'Qustodio', 'Bark'],
+                marketPosition: 'Default parental control for Google families',
+                uniqueValue: 'Deep Android and Chromebook integration'
+            },
+            findmykids: {
+                name: 'Findmykids',
+                rating: 4.7,
+                reviews: '21K',
+                price: 'Free',
+                category: 'parental',
+                strengths: ['GPS accuracy', 'Listening feature', 'School mode', 'SOS button'],
+                weaknesses: ['Privacy concerns', 'Subscription required', 'Trust issues'],
+                competitors: ['Life360', 'Kids360', 'FamiSafe'],
+                marketPosition: 'GPS-focused child safety with monitoring',
+                uniqueValue: 'Ambient listening for child safety'
+            },
+            kids360: {
+                name: 'Kids360',
+                rating: 4.6,
+                reviews: '6.7K',
+                price: 'Free',
+                category: 'parental',
+                strengths: ['Kid-friendly', 'Task rewards', 'Screen time management', 'Geofencing'],
+                weaknesses: ['Smaller brand', 'Limited content filter', 'Newer entrant'],
+                competitors: ['Findmykids', 'Kidslox', 'FamiSafe'],
+                marketPosition: 'Child-positive parental control approach',
+                uniqueValue: 'Reward-based system kids actually like'
+            },
+            ourpact: {
+                name: 'OurPact',
+                rating: 4.4,
+                reviews: '37K',
+                price: '$6.99/mo',
+                category: 'parental',
+                strengths: ['Instant block', 'Screen time allowances', 'App blocking', 'Family locator'],
+                weaknesses: ['Subscription cost', 'Setup complexity', 'iOS limitations'],
+                competitors: ['Bark', 'Qustodio', 'Kidslox'],
+                marketPosition: 'Allowance-based screen time for families',
+                uniqueValue: 'Grant/block system for earned screen time'
+            },
+            kidslox: {
+                name: 'Kidslox',
+                rating: 4.3,
+                reviews: '39K',
+                price: '$49.99/yr',
+                category: 'parental',
+                strengths: ['Easy setup', 'Multi-platform', 'Content filtering', 'Daily limits'],
+                weaknesses: ['Feature limitations', 'Customer support', 'VPN workarounds'],
+                competitors: ['Qustodio', 'OurPact', 'Bark'],
+                marketPosition: 'Easy-to-use parental control for non-tech parents',
+                uniqueValue: 'Simplest setup in parental control category'
+            },
+            bark: {
+                name: 'Bark',
+                rating: 4.2,
+                reviews: '32K',
+                price: '$99.99/yr',
+                category: 'parental',
+                strengths: ['AI content monitoring', 'Social media scanning', 'Alert system', 'Expert guidance'],
+                weaknesses: ['High price', 'Privacy concerns', 'iOS limitations'],
+                competitors: ['Qustodio', 'Net Nanny', 'OurPact'],
+                marketPosition: 'AI-powered content monitoring leader',
+                uniqueValue: 'AI detection of cyberbullying, depression, and predators'
+            },
+            circle: {
+                name: 'Circle',
+                rating: 4.2,
+                reviews: '13K',
+                price: '$89.99/yr',
+                category: 'parental',
+                strengths: ['WiFi-level control', 'All devices', 'Bedtime features', 'Focus time'],
+                weaknesses: ['Requires hardware', 'Price', 'Setup complexity'],
+                competitors: ['Bark', 'Qustodio', 'OurPact'],
+                marketPosition: 'Network-level family screen time control',
+                uniqueValue: 'Router-level control covering all home devices'
+            },
+            qustodio: {
+                name: 'Qustodio',
+                rating: 4.2,
+                reviews: '8K',
+                price: '$54.99/yr',
+                category: 'parental',
+                strengths: ['Comprehensive features', 'Cross-platform', 'YouTube monitoring', 'Reports'],
+                weaknesses: ['Complex setup', 'Performance impact', 'Dated UI'],
+                competitors: ['Bark', 'Net Nanny', 'Kidslox'],
+                marketPosition: 'Full-featured parental control suite',
+                uniqueValue: 'Most comprehensive feature set in category'
+            },
+            famisafe: {
+                name: 'FamiSafe',
+                rating: 4.0,
+                reviews: '4.2K',
+                price: 'Free',
+                category: 'parental',
+                strengths: ['AI social monitoring', 'Affordable', 'Screen time', 'Geofencing'],
+                weaknesses: ['Lower ratings', 'Wondershare brand', 'Feature reliability'],
+                competitors: ['Bark', 'Qustodio', 'Kidslox'],
+                marketPosition: 'Budget-friendly AI parental control',
+                uniqueValue: 'AI-powered social media content detection'
+            }
+        };
+
+        function generateStrategy(appId) {
+            const app = appData[appId];
+            if (!app) return null;
+
+            const allApps = Object.values(appData);
+            const categoryApps = allApps.filter(a => a.category === app.category);
+            const avgRating = (categoryApps.reduce((sum, a) => sum + a.rating, 0) / categoryApps.length).toFixed(1);
+            const ratingPosition = app.rating >= avgRating ? 'above' : 'below';
+            const isMarketLeader = parseFloat(app.reviews.replace(/[KM]/g, '')) >= 10;
+
+            return {
+                company: generateCompanyStrategy(app, categoryApps, isMarketLeader),
+                ceo: generateCEOStrategy(app, categoryApps, isMarketLeader),
+                cto: generateCTOStrategy(app, categoryApps),
+                design: generateDesignStrategy(app, categoryApps),
+                marketing: generateMarketingStrategy(app, categoryApps, isMarketLeader),
+                talent: generateTalentStrategy(app, categoryApps)
+            };
+        }
+
+        function generateCompanyStrategy(app, categoryApps, isMarketLeader) {
+            const threats = categoryApps.filter(a => a.name !== app.name && a.rating >= app.rating).slice(0, 3);
+            return {
+                title: 'Company Overview',
+                priority: isMarketLeader ? 'Defend & Expand' : 'Aggressive Growth',
+                summary: `${app.name} is positioned as "${app.marketPosition}" with ${app.reviews} reviews and ${app.rating} stars. Core differentiator: ${app.uniqueValue}.`,
+                keyMetrics: {
+                    rating: app.rating,
+                    reviews: app.reviews,
+                    price: app.price
+                },
+                opportunities: [
+                    app.category === 'personal' ? 'B2B/enterprise wellness programs' : 'School district partnerships',
+                    'International expansion (localization)',
+                    `Address gap: ${app.weaknesses[0]}`
+                ],
+                threats: threats.map(t => `${t.name} (${t.rating} stars, ${t.reviews} reviews)`)
+            };
+        }
+
+        function generateCEOStrategy(app, categoryApps, isMarketLeader) {
+            const pricePoint = app.price === 'Free' ? 'freemium' : 'premium';
+            return {
+                title: 'CEO Strategy',
+                priority: isMarketLeader ? 'medium' : 'high',
+                focus: isMarketLeader ? 'Market Defense & Expansion' : 'Market Share Capture',
+                items: [
+                    {
+                        title: 'Revenue Strategy',
+                        description: pricePoint === 'freemium'
+                            ? `Develop premium tier with ${app.weaknesses[0]} addressed. Target 5-8% free-to-paid conversion.`
+                            : `Optimize pricing tiers. Consider annual discounts to reduce churn. Test family/team plans.`
+                    },
+                    {
+                        title: 'Market Positioning',
+                        description: `Double down on "${app.uniqueValue}". This is your moat against ${app.competitors[0]} and others.`
+                    },
+                    {
+                        title: 'Strategic Partnerships',
+                        description: app.category === 'personal'
+                            ? 'Partner with productivity tools (Notion, Todoist), wellness apps, or corporate HR platforms.'
+                            : 'Partner with schools, pediatricians, family therapists, and device manufacturers.'
+                    },
+                    {
+                        title: 'Fundraising/Exit',
+                        description: isMarketLeader
+                            ? 'Strong position for Series B+ or strategic acquisition by Apple/Google/wellness platforms.'
+                            : 'Focus on growth metrics for Series A. Key metrics: DAU/MAU ratio, retention, and NPS.'
+                    }
+                ]
+            };
+        }
+
+        function generateCTOStrategy(app, categoryApps) {
+            return {
+                title: 'CTO Strategy',
+                priority: 'high',
+                focus: 'Technical Moat & Platform Expansion',
+                items: [
+                    {
+                        title: 'iOS Deep Integration',
+                        description: `Maximize Screen Time API, Focus Mode integration, and Shortcuts automation. ${app.strengths.includes('iOS shortcuts integration') ? 'You\'re ahead here—maintain lead.' : 'Critical gap to close.'}`
+                    },
+                    {
+                        title: 'AI/ML Investment',
+                        description: app.category === 'personal'
+                            ? 'Build predictive models for: optimal break timing, personalized blocking schedules, and usage pattern detection.'
+                            : 'Invest in content analysis ML: inappropriate content detection, cyberbullying identification, and sentiment analysis.'
+                    },
+                    {
+                        title: 'Platform Expansion',
+                        description: `Priority: ${app.weaknesses.includes('No cross-platform') ? 'Android app (capture 40% of market)' : 'Web dashboard, browser extension, macOS app'}. Consider WatchOS and CarPlay integrations.`
+                    },
+                    {
+                        title: 'Technical Debt',
+                        description: 'Allocate 20% of sprint capacity to performance, security audits, and iOS version compatibility.'
+                    },
+                    {
+                        title: 'API Strategy',
+                        description: 'Build developer API for integrations with productivity tools, habit trackers, and enterprise systems.'
+                    }
+                ]
+            };
+        }
+
+        function generateDesignStrategy(app, categoryApps) {
+            const hasGamification = app.strengths.some(s => s.toLowerCase().includes('gamif'));
+            return {
+                title: 'Design Lead Strategy',
+                priority: 'medium',
+                focus: 'Delightful UX That Builds Habits',
+                items: [
+                    {
+                        title: 'Onboarding Experience',
+                        description: 'Design 60-second onboarding that captures intent, sets first block, and celebrates first win. Personalization matters—ask about goals (productivity, mental health, family).'
+                    },
+                    {
+                        title: 'Habit Loop Design',
+                        description: hasGamification
+                            ? 'Expand gamification: streaks, achievements, social leaderboards, and real-world rewards.'
+                            : 'Add gamification layer: progress visualizations, milestone celebrations, and streak mechanics.'
+                    },
+                    {
+                        title: 'Widget & Lock Screen',
+                        description: 'iOS widgets are prime real estate. Design: daily progress, quick-block buttons, and motivational stats. Lock screen widgets for iOS 16+.'
+                    },
+                    {
+                        title: 'Accessibility',
+                        description: 'ADHD-friendly design: reduce cognitive load, clear visual hierarchy, calming colors. Support VoiceOver, Dynamic Type, and reduced motion.'
+                    },
+                    {
+                        title: 'Dark Mode & Theming',
+                        description: 'Ironic opportunity: make a screen time app that\'s beautiful enough to open. Custom themes, seasonal designs, and dark mode optimization.'
+                    }
+                ]
+            };
+        }
+
+        function generateMarketingStrategy(app, categoryApps, isMarketLeader) {
+            return {
+                title: 'Marketing Lead Strategy',
+                priority: isMarketLeader ? 'medium' : 'high',
+                focus: isMarketLeader ? 'Brand Authority & Retention' : 'Growth & User Acquisition',
+                items: [
+                    {
+                        title: 'ASO (App Store Optimization)',
+                        description: `Target keywords: "screen time", "app blocker", "digital wellness", "phone addiction", "${app.category === 'parental' ? 'parental control' : 'focus app'}". A/B test screenshots showing transformation.`
+                    },
+                    {
+                        title: 'Content Marketing',
+                        description: app.category === 'personal'
+                            ? 'Create content: "Phone addiction" guides, productivity tips, ADHD support resources. Partner with productivity YouTubers and podcasters.'
+                            : 'Parent education content: digital wellness guides, age-appropriate screen time, online safety. Partner with parenting influencers.'
+                    },
+                    {
+                        title: 'Social Proof',
+                        description: `${app.reviews} reviews is ${isMarketLeader ? 'strong' : 'an opportunity'}. ${isMarketLeader ? 'Feature user success stories and testimonials.' : 'Launch review campaign: in-app prompts after positive moments (completed focus session, hit goal).'}`
+                    },
+                    {
+                        title: 'Referral Program',
+                        description: 'Design viral loop: "Focus together" challenges, family sharing discounts, friend referral with mutual rewards.'
+                    },
+                    {
+                        title: 'Paid Acquisition',
+                        description: `Target: ${app.category === 'personal' ? 'productivity enthusiasts, students, remote workers, ADHD community' : 'parents of 8-16 year olds, safety-conscious families'}. Channels: Instagram, TikTok, YouTube pre-roll.`
+                    }
+                ]
+            };
+        }
+
+        function generateTalentStrategy(app, categoryApps) {
+            return {
+                title: 'Talent Lead Strategy',
+                priority: 'medium',
+                focus: 'Build Mission-Driven Team',
+                items: [
+                    {
+                        title: 'Hiring Priorities',
+                        description: 'Key hires: Senior iOS engineer (Screen Time API expertise), ML engineer (behavior prediction), Growth marketer (mobile apps), Customer success lead.'
+                    },
+                    {
+                        title: 'Employer Brand',
+                        description: `"We help people reclaim their attention and live intentionally." Leverage mission for recruiting. ${app.name} builders should be authentic users of the product.`
+                    },
+                    {
+                        title: 'Culture & Values',
+                        description: 'Ironic challenge: digital wellness company with healthy digital culture. Model boundaries: no Slack after hours, focus time blocks, meeting-free days.'
+                    },
+                    {
+                        title: 'Compensation Strategy',
+                        description: 'Competitive with consumer tech. Equity important for early team. Consider 4-day work week as differentiator for talent.'
+                    },
+                    {
+                        title: 'Remote Strategy',
+                        description: 'Async-first fits the mission. Hire globally for iOS talent. In-person offsites for relationship building and strategy.'
+                    }
+                ]
+            };
+        }
+
+        function renderStrategy(strategy, appId) {
+            const app = appData[appId];
+            const resultsDiv = document.getElementById('strategy-results');
+
+            resultsDiv.innerHTML = `
+                <div class="company-header">
+                    <h3>Strategy for ${app.name}</h3>
+                    <p class="market-position">${app.marketPosition}</p>
+                    <div class="key-metrics">
+                        <div class="metric">
+                            <div class="metric-value">${app.rating}</div>
+                            <div class="metric-label">Rating</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${app.reviews}</div>
+                            <div class="metric-label">Reviews</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">${app.price}</div>
+                            <div class="metric-label">Price</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strategy-grid">
+                    ${renderCompanyCard(strategy.company)}
+                    ${renderRoleCard('ceo', 'Chief Executive Officer', strategy.ceo)}
+                    ${renderRoleCard('cto', 'Chief Technology Officer', strategy.cto)}
+                    ${renderRoleCard('design', 'Design Lead', strategy.design)}
+                    ${renderRoleCard('marketing', 'Marketing Lead', strategy.marketing)}
+                    ${renderRoleCard('talent', 'Talent Lead', strategy.talent)}
+                </div>
+            `;
+
+            resultsDiv.classList.add('active');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function renderCompanyCard(data) {
+            return `
+                <div class="strategy-card">
+                    <div class="role-header">
+                        <div class="role-icon company">🏢</div>
+                        <div>
+                            <div class="role-title">${data.title}</div>
+                            <div class="role-subtitle">${data.priority}</div>
+                        </div>
+                    </div>
+                    <div class="strategy-content">
+                        <p>${data.summary}</p>
+                        <h4>Key Opportunities</h4>
+                        <ul>
+                            ${data.opportunities.map(o => `<li>${o}</li>`).join('')}
+                        </ul>
+                        <h4>Top Competitors to Watch</h4>
+                        <ul>
+                            ${data.threats.map(t => `<li>${t}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRoleCard(role, subtitle, data) {
+            const icons = { ceo: '👔', cto: '💻', design: '🎨', marketing: '📣', talent: '👥' };
+            return `
+                <div class="strategy-card">
+                    <div class="role-header">
+                        <div class="role-icon ${role}">${icons[role]}</div>
+                        <div>
+                            <div class="role-title">${data.title}</div>
+                            <div class="role-subtitle">${subtitle}</div>
+                        </div>
+                    </div>
+                    <div class="strategy-content">
+                        <span class="priority-tag ${data.priority}">${data.priority.toUpperCase()} PRIORITY</span>
+                        <p><strong>Focus:</strong> ${data.focus}</p>
+                        ${data.items.map(item => `
+                            <h4>${item.title}</h4>
+                            <p>${item.description}</p>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Event listeners for strategy generator
+        const appSelect = document.getElementById('app-strategy-select');
+        const generateBtn = document.getElementById('generate-strategy-btn');
+
+        appSelect.addEventListener('change', () => {
+            generateBtn.disabled = !appSelect.value;
+        });
+
+        generateBtn.addEventListener('click', () => {
+            const appId = appSelect.value;
+            if (!appId) return;
+
+            generateBtn.textContent = 'Generating...';
+            generateBtn.disabled = true;
+
+            // Simulate brief loading for effect
+            setTimeout(() => {
+                const strategy = generateStrategy(appId);
+                if (strategy) {
+                    renderStrategy(strategy, appId);
+                }
+                generateBtn.textContent = 'Generate Strategy';
+                generateBtn.disabled = false;
+            }, 500);
         });
     </script>
 </body>
