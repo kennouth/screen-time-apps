@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screen Time Apps Comparison | iOS 2025</title>
+    <title>Screen Time Category Domination | Winning Playbook</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -121,27 +121,64 @@
         /* Hero */
         .hero {
             text-align: center;
-            padding: 100px 20px 80px;
+            padding: 120px 20px 100px;
+            background:
+                radial-gradient(ellipse 100% 80% at 50% 20%, rgba(239, 68, 68, 0.1), transparent 50%),
+                radial-gradient(ellipse 80% 60% at 30% 70%, rgba(78, 48, 189, 0.15), transparent);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.25em;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 50px;
+            color: #EF4444;
+            margin-bottom: 24px;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 24px;
             letter-spacing: -0.03em;
             line-height: 1.1;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-lime) 50%, var(--accent-cyan) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, #EF4444 40%, var(--accent-lime) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 48px;
+            max-width: 650px;
+            margin: 0 auto 40px;
             line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 48px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 32px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.4);
         }
 
         .stats {
@@ -161,14 +198,14 @@
         }
 
         .stat:hover {
-            border-color: rgba(212, 255, 156, 0.3);
-            box-shadow: 0 0 30px var(--glow-lime);
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-lime), var(--accent-cyan));
+            background: linear-gradient(135deg, #EF4444, var(--accent-lime));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -1477,14 +1514,25 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             border-top: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, transparent, rgba(239, 68, 68, 0.05));
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         footer p {
             margin-bottom: 8px;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #EF4444, var(--accent-lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
         }
 
         /* Responsive */
@@ -1543,34 +1591,36 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">Screen<span>Time</span>Apps</div>
+            <div class="logo">Category<span>Domination</span></div>
             <nav>
-                <a href="#comparison">Comparison</a>
-                <a href="#apps">All Apps</a>
-                <a href="#buzz">Live Buzz</a>
-                <a href="#use-cases">Use Cases</a>
+                <a href="#strategy">Playbook</a>
+                <a href="#comparison">Intelligence</a>
+                <a href="#apps">Competitors</a>
+                <a href="#buzz">Market Signals</a>
             </nav>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>Find Your Perfect Screen Time App</h1>
-            <p>Compare the best iOS screen time and digital wellness apps. From parental controls to personal productivity, find the right tool to manage your screen time effectively.</p>
+            <div class="hero-badge">SCREEN TIME APPS</div>
+            <h1>Dominate Your Category</h1>
+            <p>Strategic intelligence and killer moves to crush the competition. Select your app, generate your playbook, and execute your path to market leadership.</p>
             <div class="stats">
                 <div class="stat">
-                    <div class="stat-number">75+</div>
-                    <div class="stat-label">Apps Compared</div>
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Apps Analyzed</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Features Tracked</div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Killer Moves</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">2025</div>
-                    <div class="stat-label">Updated</div>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Role Playbooks</div>
                 </div>
             </div>
+            <a href="#strategy" class="hero-cta">Generate Your Playbook</a>
         </div>
     </section>
 
@@ -1639,8 +1689,8 @@
     <section class="comparison-section" id="comparison">
         <div class="container">
             <div class="section-header">
-                <h2>Feature Comparison Grid</h2>
-                <p>See how each app stacks up across key features</p>
+                <h2>Competitive Intelligence</h2>
+                <p>Know your enemy. Every feature, every weakness, every opportunity.</p>
             </div>
 
             <!-- Filter Controls -->
@@ -2461,8 +2511,8 @@
     <section class="apps-section" id="apps">
         <div class="container">
             <div class="section-header">
-                <h2>Detailed App Reviews</h2>
-                <p>In-depth look at each screen time app</p>
+                <h2>The Competition</h2>
+                <p>Dossiers on every player in the market. Know what you're up against.</p>
             </div>
             <div class="apps-grid">
                 <!-- Apple Screen Time -->
@@ -2892,8 +2942,8 @@
     <section class="social-buzz" id="buzz">
         <div class="container">
             <div class="section-header">
-                <h2>Live Social Buzz</h2>
-                <p>Real-time discussions about screen time apps from Reddit & news</p>
+                <h2>Market Signals</h2>
+                <p>Real-time intelligence from Reddit, news, and social channels</p>
                 <div class="live-indicator">
                     <span class="pulse"></span>
                     <span id="last-updated">Updating...</span>
@@ -2924,8 +2974,8 @@
     <section class="use-cases" id="use-cases">
         <div class="container">
             <div class="section-header">
-                <h2>Which App Is Right For You?</h2>
-                <p>Find the best fit based on your needs</p>
+                <h2>Market Segmentation</h2>
+                <p>Target the right users. Defend your turf.</p>
             </div>
             <div class="use-case-grid">
                 <div class="use-case-card">
@@ -2970,8 +3020,9 @@
 
     <footer>
         <div class="container">
-            <p>Screen Time Apps Comparison &copy; 2025. All app names and logos are trademarks of their respective owners.</p>
-            <p style="margin-top: 10px;">App Store ratings and prices may vary. Last updated: January 2025</p>
+            <p class="footer-brand">Category Domination</p>
+            <p>Strategic intelligence for screen time app builders. Own your market.</p>
+            <p style="margin-top: 16px; font-size: 0.8rem;">Market data updated: January 2025. All app names are trademarks of their respective owners.</p>
         </div>
     </footer>
 
