@@ -206,6 +206,129 @@
             padding: 80px 0;
         }
 
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-group select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            min-width: 150px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-group select:hover {
+            border-color: var(--primary-purple-light);
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+            box-shadow: 0 0 0 3px var(--glow-lime);
+        }
+
+        .filter-group select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .sort-hint {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* Sortable headers */
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: background 0.2s ease;
+        }
+
+        th.sortable:hover {
+            background: rgba(78, 48, 189, 0.2);
+        }
+
+        th.sortable::after {
+            content: '⇅';
+            margin-left: 6px;
+            opacity: 0.3;
+            font-size: 0.8em;
+        }
+
+        th.sortable.asc::after {
+            content: '↑';
+            opacity: 1;
+            color: var(--accent-lime);
+        }
+
+        th.sortable.desc::after {
+            content: '↓';
+            opacity: 1;
+            color: var(--accent-lime);
+        }
+
+        /* Hidden rows */
+        tr.filtered-out {
+            display: none;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
         .table-wrapper {
             overflow-x: auto;
             background: var(--bg-card);
@@ -855,26 +978,70 @@
                 <h2>Feature Comparison Grid</h2>
                 <p>See how each app stacks up across key features</p>
             </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="filter-category">
+                        <option value="all">All Apps</option>
+                        <option value="personal">Personal Focus</option>
+                        <option value="parental">Parental Control</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Price:</label>
+                    <select id="filter-price">
+                        <option value="all">Any Price</option>
+                        <option value="free">Free</option>
+                        <option value="under50">Under $50/yr</option>
+                        <option value="under100">Under $100/yr</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Min Rating:</label>
+                    <select id="filter-rating">
+                        <option value="0">Any Rating</option>
+                        <option value="4.5">4.5+ Stars</option>
+                        <option value="4.0">4.0+ Stars</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Must Have:</label>
+                    <select id="filter-feature">
+                        <option value="all">Any Features</option>
+                        <option value="blocking">App Blocking</option>
+                        <option value="website">Website Filter</option>
+                        <option value="location">Location Tracking</option>
+                        <option value="focus">Focus Mode</option>
+                        <option value="family">Family Sharing</option>
+                    </select>
+                </div>
+                <button id="reset-filters" class="reset-btn">Reset</button>
+            </div>
+
+            <div class="sort-hint">Click any column header to sort</div>
+
             <div class="table-wrapper">
-                <table>
+                <table id="comparison-table">
                     <thead>
                         <tr>
-                            <th>App</th>
-                            <th>App Store Rating</th>
-                            <th>Price</th>
-                            <th>App Blocking</th>
-                            <th>Usage Reports</th>
-                            <th>Schedule Limits</th>
-                            <th>Website Filter</th>
-                            <th>Location Tracking</th>
-                            <th>Multi-Device</th>
-                            <th>Focus Mode</th>
-                            <th>Family Sharing</th>
+                            <th class="sortable" data-sort="name">App</th>
+                            <th class="sortable" data-sort="rating">Rating</th>
+                            <th class="sortable" data-sort="price">Price</th>
+                            <th class="sortable" data-sort="blocking">Blocking</th>
+                            <th class="sortable" data-sort="reports">Reports</th>
+                            <th class="sortable" data-sort="schedule">Schedule</th>
+                            <th class="sortable" data-sort="website">Web Filter</th>
+                            <th class="sortable" data-sort="location">Location</th>
+                            <th class="sortable" data-sort="multidevice">Multi-Device</th>
+                            <th class="sortable" data-sort="focus">Focus</th>
+                            <th class="sortable" data-sort="family">Family</th>
                             <th>Best For</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-name="Apple Screen Time" data-category="personal" data-price="0" data-rating="4.0" data-blocking="yes" data-website="yes" data-location="no" data-focus="yes" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #5856D6, #AF52DE);">📱</div>
@@ -893,7 +1060,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Basic needs</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Opal" data-category="personal" data-price="99.99" data-rating="4.8" data-blocking="yes" data-website="yes" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💎</div>
@@ -912,7 +1079,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Personal focus</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Forest" data-category="personal" data-price="0" data-rating="4.8" data-blocking="partial" data-website="no" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">🌲</div>
@@ -931,7 +1098,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Gamification</td>
                         </tr>
-                        <tr>
+                        <tr data-name="One Sec" data-category="personal" data-price="19.99" data-rating="4.8" data-blocking="partial" data-website="no" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">1️⃣</div>
@@ -950,7 +1117,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Mindful pauses</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Freedom" data-category="personal" data-price="39.99" data-rating="4.4" data-blocking="yes" data-website="yes" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">🔒</div>
@@ -969,7 +1136,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Cross-platform</td>
                         </tr>
-                        <tr>
+                        <tr data-name="ScreenZen" data-category="personal" data-price="0" data-rating="4.8" data-blocking="yes" data-website="no" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">📊</div>
@@ -988,7 +1155,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Best free option</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Qustodio" data-category="parental" data-price="54.99" data-rating="4.2" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">👨‍👩‍👧</div>
@@ -1007,7 +1174,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Parental control</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Bark" data-category="parental" data-price="99.99" data-rating="4.2" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">🐕</div>
@@ -1026,7 +1193,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Content monitoring</td>
                         </tr>
-                        <tr>
+                        <tr data-name="OurPact" data-category="parental" data-price="83.88" data-rating="4.4" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">⏰</div>
@@ -1045,7 +1212,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Family scheduling</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Net Nanny" data-category="parental" data-price="54.99" data-rating="2.7" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">🛡️</div>
@@ -1064,7 +1231,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Web filtering</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Kidslox" data-category="parental" data-price="49.99" data-rating="4.3" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);">🔐</div>
@@ -1083,7 +1250,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Easy setup</td>
                         </tr>
-                        <tr>
+                        <tr data-name="FamilyTime" data-category="parental" data-price="29" data-rating="1.2" data-blocking="yes" data-website="yes" data-location="yes" data-focus="no" data-family="yes">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #84cc16, #65a30d);">👶</div>
@@ -1102,7 +1269,7 @@
                             <td><span class="check">✓</span></td>
                             <td>Not recommended</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Clearspace" data-category="personal" data-price="44.99" data-rating="4.8" data-blocking="yes" data-website="no" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #00D4AA, #00B894);">✨</div>
@@ -1121,7 +1288,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>App opens focus</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Jomo" data-category="personal" data-price="29.99" data-rating="4.7" data-blocking="yes" data-website="yes" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #FF6B6B, #EE5A5A);">😌</div>
@@ -1140,7 +1307,7 @@
                             <td><span class="cross">✗</span></td>
                             <td>Break exercises</td>
                         </tr>
-                        <tr>
+                        <tr data-name="Flipd" data-category="personal" data-price="44.99" data-rating="4.5" data-blocking="yes" data-website="no" data-location="no" data-focus="yes" data-family="no">
                             <td>
                                 <div class="app-name">
                                     <div class="app-icon" style="background: linear-gradient(135deg, #5C6BC0, #3F51B5);">⏱️</div>
@@ -1955,6 +2122,159 @@
             fetchNews();
             updateTimestamp();
         }, 300000);
+
+        // ========================================
+        // Sorting and Filtering Functionality
+        // ========================================
+
+        const table = document.getElementById('comparison-table');
+        const tbody = table.querySelector('tbody');
+        const headers = table.querySelectorAll('th.sortable');
+        let currentSort = { column: null, direction: 'asc' };
+
+        // Sorting function
+        function sortTable(column, direction) {
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            rows.sort((a, b) => {
+                let aVal, bVal;
+
+                if (column === 'name') {
+                    aVal = a.dataset.name.toLowerCase();
+                    bVal = b.dataset.name.toLowerCase();
+                    return direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                } else if (column === 'rating') {
+                    aVal = parseFloat(a.dataset.rating) || 0;
+                    bVal = parseFloat(b.dataset.rating) || 0;
+                } else if (column === 'price') {
+                    aVal = parseFloat(a.dataset.price) || 0;
+                    bVal = parseFloat(b.dataset.price) || 0;
+                } else {
+                    // For yes/no/partial columns
+                    const valueMap = { 'yes': 2, 'partial': 1, 'no': 0 };
+                    aVal = valueMap[a.dataset[column]] || 0;
+                    bVal = valueMap[b.dataset[column]] || 0;
+                }
+
+                if (direction === 'asc') {
+                    return aVal - bVal;
+                } else {
+                    return bVal - aVal;
+                }
+            });
+
+            // Re-append sorted rows
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Add click handlers to sortable headers
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const column = header.dataset.sort;
+
+                // Toggle direction if same column, otherwise default to desc (highest first)
+                let direction = 'desc';
+                if (currentSort.column === column) {
+                    direction = currentSort.direction === 'desc' ? 'asc' : 'desc';
+                }
+
+                // Update visual indicators
+                headers.forEach(h => h.classList.remove('asc', 'desc'));
+                header.classList.add(direction);
+
+                // Sort the table
+                sortTable(column, direction);
+
+                // Store current sort state
+                currentSort = { column, direction };
+            });
+        });
+
+        // Filtering function
+        function applyFilters() {
+            const category = document.getElementById('filter-category').value;
+            const price = document.getElementById('filter-price').value;
+            const rating = document.getElementById('filter-rating').value;
+            const feature = document.getElementById('filter-feature').value;
+
+            const rows = tbody.querySelectorAll('tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                let show = true;
+
+                // Category filter
+                if (category !== 'all' && row.dataset.category !== category) {
+                    show = false;
+                }
+
+                // Price filter
+                if (show && price !== 'all') {
+                    const rowPrice = parseFloat(row.dataset.price) || 0;
+                    if (price === 'free' && rowPrice > 0) show = false;
+                    if (price === 'under50' && rowPrice >= 50) show = false;
+                    if (price === 'under100' && rowPrice >= 100) show = false;
+                }
+
+                // Rating filter
+                if (show && rating !== '0') {
+                    const rowRating = parseFloat(row.dataset.rating) || 0;
+                    if (rowRating < parseFloat(rating)) show = false;
+                }
+
+                // Feature filter
+                if (show && feature !== 'all') {
+                    if (row.dataset[feature] !== 'yes') show = false;
+                }
+
+                // Apply visibility
+                if (show) {
+                    row.classList.remove('filtered-out');
+                    visibleCount++;
+                } else {
+                    row.classList.add('filtered-out');
+                }
+            });
+
+            // Show "no results" message if needed
+            let noResults = document.querySelector('.no-results');
+            if (visibleCount === 0) {
+                if (!noResults) {
+                    noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'No apps match your filters. Try adjusting your criteria.';
+                    table.parentNode.appendChild(noResults);
+                }
+                noResults.style.display = 'block';
+            } else if (noResults) {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Add event listeners to filter controls
+        document.getElementById('filter-category').addEventListener('change', applyFilters);
+        document.getElementById('filter-price').addEventListener('change', applyFilters);
+        document.getElementById('filter-rating').addEventListener('change', applyFilters);
+        document.getElementById('filter-feature').addEventListener('change', applyFilters);
+
+        // Reset filters button
+        document.getElementById('reset-filters').addEventListener('click', () => {
+            document.getElementById('filter-category').value = 'all';
+            document.getElementById('filter-price').value = 'all';
+            document.getElementById('filter-rating').value = '0';
+            document.getElementById('filter-feature').value = 'all';
+
+            // Remove all filtered-out classes
+            tbody.querySelectorAll('tr').forEach(row => row.classList.remove('filtered-out'));
+
+            // Hide no results message
+            const noResults = document.querySelector('.no-results');
+            if (noResults) noResults.style.display = 'none';
+
+            // Reset sort indicators
+            headers.forEach(h => h.classList.remove('asc', 'desc'));
+            currentSort = { column: null, direction: 'asc' };
+        });
     </script>
 </body>
 </html>
