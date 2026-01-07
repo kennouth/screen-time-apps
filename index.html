@@ -3806,10 +3806,10 @@
 
             const allApps = Object.values(appData);
             const categoryApps = allApps.filter(a => a.category === app.category);
-            const isMarketLeader = parseFloat(app.reviews.replace(/[KM]/g, '')) >= 20;
+            const isMarketLeader = parseFloat((app.reviews || '0').replace(/[KM]/g, '')) >= 20;
             const isPremium = app.price !== 'Free';
-            const mainRival = app.competitors[0];
-            const rivalData = appData[mainRival.toLowerCase().replace(/\s/g, '')] || { name: mainRival, reviews: '10K', rating: 4.5 };
+            const mainRival = (app.competitors && app.competitors[0]) || 'competitor';
+            const rivalData = appData[mainRival.toLowerCase().replace(/\s/g, '')] || { name: mainRival, reviews: '10K', rating: 4.5, competitors: [] };
 
             return {
                 overview: generateOverview(app, isMarketLeader, rivalData),
@@ -3923,9 +3923,10 @@
                     category: "M&A"
                 });
             } else {
+                const otherCompetitors = (app.competitors && app.competitors.slice(1, 3).join(', ')) || 'other apps';
                 moves.push({
                     title: "The Underdog Alliance",
-                    description: `Form a coalition with other underdogs (${app.competitors.slice(1, 3).join(', ')}). Share learnings, cross-promote, and collectively attack the market leader's weaknesses.`,
+                    description: `Form a coalition with other underdogs (${otherCompetitors}). Share learnings, cross-promote, and collectively attack the market leader's weaknesses.`,
                     impact: "high",
                     difficulty: "medium",
                     category: "Strategy"
@@ -4276,9 +4277,13 @@
 
                 // Simulate brief loading for effect
                 setTimeout(() => {
-                    const playbook = generateKillerMoves(appId);
-                    if (playbook) {
-                        renderPlaybook(playbook, appId);
+                    try {
+                        const playbook = generateKillerMoves(appId);
+                        if (playbook) {
+                            renderPlaybook(playbook, appId);
+                        }
+                    } catch (err) {
+                        console.error('Strategy generation error:', err);
                     }
                     generateBtn.innerHTML = '<span class="btn-icon">⚡</span> Generate Killer Moves';
                     generateBtn.disabled = false;
