@@ -4270,6 +4270,7 @@
 
             generateBtn.addEventListener('click', () => {
                 const appId = appSelect.value;
+                console.log('Button clicked, appId:', appId);
                 if (!appId) return;
 
                 generateBtn.innerHTML = '<span class="btn-icon">⏳</span> Generating...';
@@ -4278,12 +4279,17 @@
                 // Simulate brief loading for effect
                 setTimeout(() => {
                     try {
+                        console.log('Generating playbook for:', appId);
+                        console.log('App data exists:', !!appData[appId]);
                         const playbook = generateKillerMoves(appId);
+                        console.log('Playbook generated:', !!playbook);
                         if (playbook) {
                             renderPlaybook(playbook, appId);
+                            console.log('Playbook rendered');
                         }
                     } catch (err) {
                         console.error('Strategy generation error:', err);
+                        alert('Error generating playbook: ' + err.message);
                     }
                     generateBtn.innerHTML = '<span class="btn-icon">⚡</span> Generate Killer Moves';
                     generateBtn.disabled = false;
